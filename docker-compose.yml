@@ -1,0 +1,16 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: cubadev
+      POSTGRES_PASSWORD: LS920UL3
+      POSTGRES_DB: cubaDB
+    command: pg_ctl -D /var/lib/postgresql/data -l logfile start
+  web:
+    build: .
+    command: bash run.sh     
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
